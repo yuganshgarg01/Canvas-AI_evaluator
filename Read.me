@@ -1,0 +1,446 @@
+# Canvas Assignment AI Evaluator
+
+AI-powered Canvas assignment downloader and evaluator using Groq LLMs.
+
+Supports automatic:
+
+* Downloading Canvas submissions
+* Reading PDFs, DOCX, TXT, and code files
+* AI-based evaluation using Groq
+* Rubric-based grading
+* Uploading grades back to Canvas
+* Generating CSV reports
+
+Based on:
+
+* `Assignment-Downloader.py`
+* `evaluate_assignments-groq.py`
+
+---
+
+# Features
+
+## Assignment Downloader
+
+* Downloads all student submissions from Canvas
+* Supports parallel downloading
+* Creates ZIP backup of submissions
+* Extracts files automatically
+* Handles:
+
+  * File uploads
+  * Text submissions
+  * URL submissions
+
+---
+
+## AI Evaluator
+
+* Fetches assignment rubric from Canvas
+* Reads multiple file formats
+* Evaluates using Groq AI models
+* Generates:
+
+  * Marks
+  * Grades
+  * Feedback
+  * Strengths
+  * Improvements
+* Uploads grades directly to Canvas
+* Exports results as CSV
+
+---
+
+# Supported Platforms
+
+| Platform     | Supported |
+| ------------ | --------- |
+| Windows      | ✅         |
+| Ubuntu/Linux | ✅         |
+| macOS        | ✅         |
+
+---
+
+# Supported File Types
+
+| File Type  | Supported |
+| ---------- | --------- |
+| PDF        | ✅         |
+| DOCX       | ✅         |
+| TXT        | ✅         |
+| Python     | ✅         |
+| Java       | ✅         |
+| C/C++      | ✅         |
+| HTML/CSS   | ✅         |
+| JavaScript | ✅         |
+| SQL        | ✅         |
+| Images     | Partial   |
+
+---
+
+# Project Structure
+
+```text
+ProjectFolder/
+│
+├── Assignment-Downloader.py
+├── evaluate_assignments-groq.py
+├── submissions/
+├── submissions.zip
+└── Assignment_results.csv
+```
+
+---
+
+# Installation
+
+## 1. Install Python
+
+Download Python:
+
+Python
+
+```text
+https://python.org
+```
+
+Verify installation:
+
+### Windows
+
+```bash
+python --version
+```
+
+### Linux/macOS
+
+```bash
+python3 --version
+```
+
+---
+
+## 2. Install Required Libraries
+
+### Windows
+
+```bash
+pip install requests groq pandas python-docx pymupdf pillow openpyxl tqdm
+```
+
+### Linux/macOS
+
+```bash
+pip3 install requests groq pandas python-docx pymupdf pillow openpyxl tqdm
+```
+
+---
+
+# Generate Groq API Key
+
+The evaluator uses:
+
+Groq
+
+Open:
+
+```text
+https://console.groq.com
+```
+
+Steps:
+
+1. Login
+2. Open API Keys
+3. Create API Key
+4. Copy the key
+
+Example:
+
+```python
+gsk_xxxxxxxxxxxxxxxxx
+```
+
+---
+
+# Generate Canvas API Token
+
+Open Canvas.
+
+Go to:
+
+```text
+Account → Settings → Approved Integrations
+```
+
+Click:
+
+```text
++ New Access Token
+```
+
+Copy generated token.
+
+Example:
+
+```python
+7~xxxxxxxxxxxxxxxx
+```
+
+---
+
+# Get Course ID
+
+Open course URL.
+
+Example:
+
+```text
+https://canvas.instructure.com/courses/14222223
+```
+
+Course ID:
+
+```python
+14222223
+```
+
+---
+
+# Get Assignment ID
+
+Open assignment URL.
+
+Example:
+
+```text
+https://canvas.instructure.com/courses/14222223/assignments/62461759
+```
+
+Assignment ID:
+
+```python
+62461759
+```
+
+---
+
+# Configuration
+
+Edit both scripts.
+
+Find:
+
+```python
+GROQ_API_KEY     = ""
+CANVAS_API_TOKEN = ""
+CANVAS_URL       = "https://canvas.instructure.com"
+COURSE_ID        = ""
+ASSIGNMENT_ID    = ""
+```
+
+Replace with your own values.
+
+Example:
+
+```python
+GROQ_API_KEY     = "gsk_xxxxxxxxx"
+CANVAS_API_TOKEN = "7~xxxxxxxxx"
+CANVAS_URL       = "https://canvas.instructure.com"
+COURSE_ID        = "14222223"
+ASSIGNMENT_ID    = "62461759"
+```
+
+---
+
+# Running Order
+
+IMPORTANT:
+
+Always run scripts in this order.
+
+---
+
+## Step 1 — Download Submissions
+
+### Windows
+
+```bash
+python Assignment-Downloader.py
+```
+
+### Linux/macOS
+
+```bash
+python3 Assignment-Downloader.py
+```
+
+This will:
+
+* Fetch submissions from Canvas
+* Download all files
+* Create ZIP backup
+* Extract files into `submissions/`
+
+---
+
+## Step 2 — Evaluate Assignments
+
+### Windows
+
+```bash
+python evaluate_assignments-groq.py
+```
+
+### Linux/macOS
+
+```bash
+python3 evaluate_assignments-groq.py
+```
+
+This will:
+
+* Read assignment question
+* Read rubric
+* Evaluate student submissions
+* Upload grades to Canvas
+* Generate CSV report
+
+---
+
+# Output Files
+
+Generated automatically:
+
+```text
+submissions/
+submissions.zip
+Assignment_Name_results.csv
+```
+
+---
+
+# Important Settings
+
+## Change AI Model
+
+Inside evaluator script:
+
+```python
+GROQ_MODEL = "llama-3.1-8b-instant"
+```
+
+Other example:
+
+```python
+GROQ_MODEL = "llama-3.3-70b-versatile"
+```
+
+---
+
+## Enable Faculty Comments
+
+Inside evaluator script:
+
+```python
+FACULTY_COMMENTS_ENABLED = False
+```
+
+Change to:
+
+```python
+FACULTY_COMMENTS_ENABLED = True
+```
+
+---
+
+## Change Download Speed
+
+Inside downloader script:
+
+```python
+MAX_WORKERS = 10
+```
+
+Higher value = faster downloads.
+
+---
+
+# Common Errors
+
+## ModuleNotFoundError
+
+Install missing libraries:
+
+```bash
+pip install requests groq pandas python-docx pymupdf pillow openpyxl tqdm
+```
+
+---
+
+## Failed to Fetch Submissions
+
+Check:
+
+* Canvas API token
+* Course ID
+* Assignment ID
+
+---
+
+## submissions/ Folder Not Found
+
+Cause:
+
+Evaluator ran before downloader.
+
+Correct order:
+
+```text
+1. Assignment-Downloader.py
+2. evaluate_assignments-groq.py
+```
+
+---
+
+## Groq Authentication Error
+
+Cause:
+
+Invalid API key.
+
+Generate new API key from Groq console.
+
+---
+
+# Security Warning
+
+Do NOT share:
+
+* Groq API keys
+* Canvas API tokens
+
+Avoid uploading scripts publicly with keys inside.
+
+---
+
+# Workflow Summary
+
+```text
+1. Install Python
+2. Install libraries
+3. Generate Groq API key
+4. Generate Canvas API token
+5. Get Course ID
+6. Get Assignment ID
+7. Edit both Python files
+8. Run Assignment-Downloader.py
+9. Run evaluate_assignments-groq.py
+10. Check CSV results and Canvas grades
+```
+
+---
+
+# License
+
+This project is intended for educational and research purposes.
