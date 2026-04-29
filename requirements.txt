@@ -1,0 +1,8 @@
+requests
+groq
+pandas
+python-docx
+pymupdf
+pillow
+openpyxl
+tqdm
